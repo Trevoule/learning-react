@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./ExpenseForm.css";
 
-const ExpenseForm = (props ) => {
+const ExpenseForm = ({ onCancel, onSaveExpenseData }) => {
   // multiples states
   const [inputtedTitle, setInputtedTitle] = useState("");
   const [inputtedAmount, setInputtedAmount] = useState("");
@@ -15,7 +15,6 @@ const ExpenseForm = (props ) => {
   // });
 
   const titleChangeHandler = (e) => {
-    // for multiple states
     setInputtedTitle(e.target.value);
 
     // for one state
@@ -33,43 +32,31 @@ const ExpenseForm = (props ) => {
     //   setUserInput((prevState) => {
     //     return { ...prevState, enteredTitle: e.target.value };
     //   });
-    }
-
+  };
 
   const amountChangeHandler = (e) => {
     setInputtedAmount(e.target.value);
-
-    // setUserInput({
-    //   ...userInput,
-    //   inputtedTitle: e.target.value,
-    // });
   };
 
   const dateChangeHandler = (e) => {
     setInputtedDate(e.target.value);
-
-    // setUserInput({
-    //   ...userInput,
-    //   inputtedDate: e.target.value,
-    // });
   };
 
   const submitHandler = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     const expenseData = {
       title: inputtedTitle,
       amount: inputtedAmount,
-      date: new Date(inputtedDate)
-    }
+      date: new Date(inputtedDate),
+    };
 
-    
-    props.onSaveExpenseData(expenseData)
+    onSaveExpenseData(expenseData);
 
-    setInputtedTitle('')
-    setInputtedAmount('')
-    setInputtedDate('')
-  }
+    setInputtedTitle("");
+    setInputtedAmount("");
+    setInputtedDate("");
+  };
 
   return (
     <form onSubmit={submitHandler}>
@@ -104,6 +91,9 @@ const ExpenseForm = (props ) => {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button type="button" onClick={onCancel}>
+          Cancel
+        </button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
