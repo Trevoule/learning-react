@@ -5,7 +5,6 @@ import "./ExpensesFilter.css";
 const ExpensesFilter = (props) => {
   const filterChangeHandler = (e) => {
     props.onFilterChange(e.target.value);
-
   }
 
   return (
@@ -13,7 +12,7 @@ const ExpensesFilter = (props) => {
       <div className="expenses-filter__control">
         <label>Filter by year</label>
         <select
-          value={props.defaultYear}
+          value={props.selectedYear}
           onChange={filterChangeHandler}
          >
           <option value="2022">2022</option>

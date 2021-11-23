@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ExpenseForm from "./ExpenseForm";
 import "./NewExpense.css";
 
-const NewExpense = (props) => {
+const NewExpense = ({ onAddExpense }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const saveExpenseDataHandler = (enteredExpenseData) => {
@@ -12,17 +12,17 @@ const NewExpense = (props) => {
       id: Math.random().toString(),
     };
 
-      props.onAddExpense(expenseData);
-      setIsEditing(false);
+    onAddExpense(expenseData);
+    setIsEditing(false);
   };
 
   const startEditingHandler = () => {
     setIsEditing(true);
   };
-    
-    const stopEditingHandler = () => {
-        setIsEditing(false);
-    };
+
+  const stopEditingHandler = () => {
+    setIsEditing(false);
+  };
 
   return (
     <div className="new-expense">
